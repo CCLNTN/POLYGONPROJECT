@@ -20,11 +20,11 @@ COLUMN_DEFINITIONS = {
     'bid_size': 'BIGINT',
     'conditions': 'VARCHAR',
     'indicators': 'VARCHAR',
-    'participant_timestamp': 'VARCHAR',
+    'participant_timestamp': 'TIMESTAMP_US', # Using Microsecond Precision
     'sequence_number': 'BIGINT',
-    'sip_timestamp': 'VARCHAR',
+    'sip_timestamp': 'TIMESTAMP_US', # Using Microsecond Precision
     'tape': 'BIGINT',
-    'trf_timestamp': 'VARCHAR'
+    'trf_timestamp': 'TIMESTAMP_US' # Using Microsecond Precision
 }
 
 # 3. Define the filter file to be used for this bulk run.
