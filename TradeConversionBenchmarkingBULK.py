@@ -126,14 +126,20 @@ if __name__ == "__main__":
         for source_file in source_files_in_month:
             total_files_processed += 1
             print(f"  [{total_files_processed}] Processing file: {source_file.name}")
-            
+
             # Determine the correct output subdirectory
             relative_path = source_file.relative_to(base_path)
             output_sub_dir = Path(BASE_OUTPUT_DIR) / relative_path.parent
-            
+
             # Create the output directory if it doesn't exist
             output_sub_dir.mkdir(parents=True, exist_ok=True)
-            
+
+            # Skip processing if the output file already exists
+            output_file = output_sub_dir / f"{source_file.stem.replace('.csv', '')}.parquet"
+            if output_file.exists():
+                print(f"    > SKIPPED: {output_file.name} already exists")
+                continue
+
             if convert_file(source_file, output_sub_dir):
                 success_count += 1
             else:
